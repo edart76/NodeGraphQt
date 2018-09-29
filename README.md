@@ -5,7 +5,7 @@ a learning exercise to write a custom node graph with PySide2.
 
 NodeGraphQt is node graph widget that can be implemented and repurposed into applications that supports PySide2.
 
-![screencap01](https://raw.githubusercontent.com/jchanvfx/NodeGraphQt/master/example/screenshot.png)
+![screencap01](https://raw.githubusercontent.com/jchanvfx/NodeGraphQt/master/screencaps/screenshot.png)
 
 #### Navigation
 
@@ -15,14 +15,14 @@ NodeGraphQt is node graph widget that can be implemented and repurposed into app
 | Pan           | `RMB + Drag` or `Alt + LMB + Drag`     |
 
 #### Node Search
-![screencap03](https://raw.githubusercontent.com/jchanvfx/NodeGraphQt/master/example/screenshot_tab_search.png)
+![screencap03](https://raw.githubusercontent.com/jchanvfx/NodeGraphQt/master/screencaps/screenshot_tab_search.png)
 
 | action           | hotkey |
 | ---------------- |:------:|
 | Show node search | `Tab`  |
 
 #### Context Menu
-![screencap02](https://raw.githubusercontent.com/jchanvfx/NodeGraphQt/master/example/screenshot_menu.png)
+![screencap02](https://raw.githubusercontent.com/jchanvfx/NodeGraphQt/master/screencaps/screenshot_menu.png)
 
 #### Example
 

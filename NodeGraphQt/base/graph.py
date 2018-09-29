@@ -661,6 +661,7 @@ class NodeGraph(QtCore.QObject):
         self._undo_stack.beginMacro('duplicated nodes')
 
         self.clear_selection()
+
         serial = self._serialize(nodes)
         new_nodes = self._deserialize(serial)
         offset = 50
