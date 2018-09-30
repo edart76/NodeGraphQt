@@ -1,4 +1,6 @@
 #!/usr/bin/python
+import os
+
 from NodeGraphQt.base.commands import PropertyChangedCmd
 from NodeGraphQt.base.model import NodeModel
 from NodeGraphQt.base.port import Port
@@ -407,6 +409,10 @@ class Node(NodeObject):
         Args:
             icon (str): path to the icon image. 
         """
+        if not icon:
+            return
+        if not os.path.exists(icon):
+            raise FileNotFoundError('icon file missing: {}'.format(icon))
         self.set_property('icon', icon)
 
     def icon(self):
