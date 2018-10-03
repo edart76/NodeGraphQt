@@ -172,6 +172,12 @@ class NodeGraph(QtCore.QObject):
         """
         self._undo_stack.endMacro()
 
+    def clear_undo(self):
+        """
+        Clears and resets the node graph undo stack.
+        """
+        self._undo_stack.clear()
+
     def context_menu(self):
         """
         Returns a node graph context menu object.

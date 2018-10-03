@@ -77,6 +77,7 @@ class NodeViewer(QtWidgets.QGraphicsView):
         self.setHorizontalScrollBarPolicy(QtCore.Qt.ScrollBarAlwaysOff)
         self.setVerticalScrollBarPolicy(QtCore.Qt.ScrollBarAlwaysOff)
         self.setViewportUpdateMode(QtWidgets.QGraphicsView.FullViewportUpdate)
+        self.setWindowTitle('NodeGraphQt')
         self._pipe_layout = PIPE_LAYOUT_CURVED
         self._live_pipe = None
         self._detached_port = None
