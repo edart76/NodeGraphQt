@@ -47,7 +47,7 @@ class _NodeVendor(object):
         register the node.
 
         Args:
-            node (Node): node item
+            node (NodeGraphQt.Node): node instance.
             alias (str): custom alias for the node (optional).
         """
         if node is None:
@@ -75,7 +75,24 @@ class _NodeVendor(object):
                 raise AssertionError(
                     'Node Alias: {} already taken!'.format(alias))
             self._aliases[alias] = node_type
-            
+
+    def unregister_node(self, node_type):
+        """
+        unregister node from the vendor.
+
+        Args:
+            node_type (str): node identifier
+        """
+        if node_type in self._nodes:
+            self._nodes.pop(node_type)
+        if node_type in self._names:
+            self._names.pop(node_type)
+        if node_type in self.aliases.values():
+            for name, ntype in self.aliases.items():
+                if node_type == ntype:
+                    self.aliases.pop(name)
+                    break
+
     def clear_registered_nodes(self):
         """
         clear out registered nodes, to prevent conflicts on reset

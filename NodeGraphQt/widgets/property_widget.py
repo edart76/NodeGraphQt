@@ -22,7 +22,7 @@ class ColorSolid(QtWidgets.QWidget):
 
 class ColorButton(QtWidgets.QWidget):
 
-    color_submitted = QtCore.Signal(tuple)
+    color_selected = QtCore.Signal(tuple)
 
     def __init__(self, parent=None, color=None):
         super(ColorButton, self).__init__(parent)
@@ -40,7 +40,7 @@ class ColorButton(QtWidgets.QWidget):
         color = QtWidgets.QColorDialog.getColor()
         if color.isValid():
             self.color = color.getRgb()
-            self.color_submitted.emit(self.color)
+            self.color_selected.emit(self.color)
 
     @property
     def color(self):
@@ -55,9 +55,20 @@ class ColorButton(QtWidgets.QWidget):
 
 class NodePropertyWidget(QtWidgets.QWidget):
 
+    property_changed = QtCore.Signal(str, object)
+
     def __init__(self, parent=None, node=None):
         super(NodePropertyWidget, self).__init__(parent)
+        title = 'properties'
+        if node:
+            title += ' ({})'.format(node.name())
+        self.setWindowTitle(title)
         self._node = node
+        self._layout = QtWidgets.QVBoxLayout(self)
+        self._layout.setAlignment(QtCore.Qt.AlignTop)
+        self._layout.setContentsMargins(1, 1, 1, 1)
+
+        # setup node default property widgets.
         self.widgets = {
             'name': QtWidgets.QLineEdit(),
             'color': ColorButton(self),
@@ -65,35 +76,52 @@ class NodePropertyWidget(QtWidgets.QWidget):
             'text_color': ColorButton(self),
             'disabled': QtWidgets.QCheckBox(self),
         }
-        self.layout()
-        default_layout = QtWidgets.QGridLayout(self)
-        default_layout.setContentsMargins(4, 4, 4, 4)
-        default_layout.setSpacing(4)
-        default_layout.setColumnMinimumWidth(0, 100)
-        default_layout.setColumnMinimumWidth(1, 100)
+        prop_layout = QtWidgets.QGridLayout()
+        prop_layout.setContentsMargins(4, 4, 4, 4)
+        prop_layout.setSpacing(2)
+        prop_layout.setColumnMinimumWidth(0, 80)
+        prop_layout.setColumnMinimumWidth(1, 100)
         x = 0
         for name, widget in self.widgets.items():
             label = QtWidgets.QLabel(name.replace('_', ' '))
-            default_layout.addWidget(label, x, 0, 1, 1, QtCore.Qt.AlignRight)
-            default_layout.addWidget(widget, x, 1)
+            prop_layout.addWidget(label, x, 0, 1, 1, QtCore.Qt.AlignRight)
+            prop_layout.addWidget(widget, x, 1)
             x += 1
-        default_layout.addWidget(self._create_line(), x, 0, 1, 2)
+        self._layout.addLayout(prop_layout)
+        self._layout.addWidget(self.__divider())
+
+        # setup custom properties.
 
 
-    def _create_line(self):
+        # wire up default node property widgets.
+        for name, widget in self.widgets.items():
+            self.__wire_widget(name, widget)
+
+    def __wire_widget(self, name, widget):
+        if isinstance(widget, ColorButton):
+            widget.color_selected.connect(
+                lambda value, prop=name: self.__on_prop_changed(prop, value))
+        elif isinstance(widget, QtWidgets.QCheckBox):
+            widget.stateChanged.connect(
+                lambda value, prop=name: self.__on_prop_changed(prop, value == 2))
+        elif isinstance(widget, QtWidgets.QLineEdit):
+            widget.returnPressed.connect(
+                lambda value, prop=name: self.__on_prop_changed(prop, value))
+
+    def __on_prop_changed(self, name, value):
+        print(name, value)
+
+    def __divider(self):
         line = QtWidgets.QFrame(self)
         line.setFrameShape(line.HLine)
         line.setFrameShadow(line.Sunken)
         line.setMinimumHeight(10)
         return line
 
-    def _create_prop_widgets(self):
+    def __build_widgets(self):
         self._widgets['id'] = QtWidgets.QLabel()
         self._widgets['type'] = QtWidgets.QLabel()
         self._widgets['name'] = QtWidgets.QLabel()
-
-    # def wire_signals(self):
-    #     self.node.widgets
 
     @property
     def node(self):
