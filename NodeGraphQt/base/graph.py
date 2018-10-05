@@ -29,11 +29,17 @@ class NodeGraph(QtCore.QObject):
         self._wire_signals()
 
     def _wire_signals(self):
+        """
+        connect up the signals and slots.
+        """
         self._viewer.moved_nodes.connect(self._on_nodes_moved)
         self._viewer.search_triggered.connect(self._on_search_triggered)
         self._viewer.connection_changed.connect(self._on_connection_changed)
 
     def _init_actions(self):
+        """
+        initialize node graph.
+        """
         # setup tab search shortcut.
         tab = QAction('Search Nodes', self)
         tab.setShortcut('tab')
