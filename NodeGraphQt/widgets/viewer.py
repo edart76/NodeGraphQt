@@ -39,6 +39,7 @@ class ContextMenu(object):
             return ContextMenu(self.__view, menu)
 
     def add_action(self, action):
+        # set the shortcut visible in the menu or they won't work.
         action.setShortcutVisibleInContextMenu(True)
         self.__menu.addAction(action)
 
@@ -116,7 +117,7 @@ class NodeViewer(QtWidgets.QGraphicsView):
         return '{}.{}()'.format(
             self.__module__, self.__class__.__name__)
 
-    # --- private methods ---
+    # --- private ---
 
     def _set_viewer_zoom(self, value):
         if value == 0.0:
@@ -156,7 +157,7 @@ class NodeViewer(QtWidgets.QGraphicsView):
         pos = self.mapToScene(self._previous_pos)
         self.search_triggered.emit(node_type, (pos.x(), pos.y()))
 
-    # --- re-implemented methods ---
+    # --- re-implemented ---
 
     def resizeEvent(self, event):
         super(NodeViewer, self).resizeEvent(event)
@@ -280,7 +281,7 @@ class NodeViewer(QtWidgets.QGraphicsView):
     #     if event.mimeData().hasFormat('component/name'):
     #         event.accept()
 
-    # --- viewer methods ---
+    # --- viewer ---
 
     def start_live_connection(self, selected_port):
         """
