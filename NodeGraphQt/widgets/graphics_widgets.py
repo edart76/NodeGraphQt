@@ -40,6 +40,9 @@ class NodeBaseWidget(QtWidgets.QGraphicsProxyWidget):
         self._name = name
         self._label = label
 
+    def __repr__(self):
+        return '{}({})'.format(self.__class__.__name__, self._name)
+
     def _value_changed(self):
         self.value_changed.emit(self.name, self.value)
 

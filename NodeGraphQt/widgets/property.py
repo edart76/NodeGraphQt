@@ -58,10 +58,14 @@ class NodePropertyWidget(QtWidgets.QWidget):
     property_changed = QtCore.Signal(str, object)
 
     def __init__(self, parent=None, node=None):
+        """
+        Args:
+            parent (NodeGraphQt.widgets.viewer.NodeViewer): node graph widget.
+            node (NodeGraphQt.Node): node instance.
+        """
         super(NodePropertyWidget, self).__init__(parent)
-        title = 'properties'
-        if node:
-            title += ' ({})'.format(node.name())
+        title = '({}) '.format(node.name()) if node else ''
+        title += 'node properties'
         self.setWindowTitle(title)
         self._node = node
         self._layout = QtWidgets.QVBoxLayout(self)
@@ -90,12 +94,21 @@ class NodePropertyWidget(QtWidgets.QWidget):
         self._layout.addLayout(prop_layout)
         self._layout.addWidget(self.__divider())
 
-        # setup custom properties.
-
-
         # wire up default node property widgets.
         for name, widget in self.widgets.items():
             self.__wire_widget(name, widget)
+
+        # setup custom properties.
+        self.custom_widgets = {}
+        for prop in self.node.properties()
+
+
+        # wireup the node widgets.
+        if hasattr(self.node, 'widgets'):
+            for name, widget in self.node.widgets().items():
+                self.__wire_node_widgets(name, widget)
+
+
 
     def __wire_widget(self, name, widget):
         if isinstance(widget, ColorButton):
@@ -107,6 +120,10 @@ class NodePropertyWidget(QtWidgets.QWidget):
         elif isinstance(widget, QtWidgets.QLineEdit):
             widget.returnPressed.connect(
                 lambda value, prop=name: self.__on_prop_changed(prop, value))
+
+    def __wire_node_widgets(self, widget):
+        return
+
 
     def __on_prop_changed(self, name, value):
         print(name, value)
