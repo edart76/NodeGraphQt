@@ -38,9 +38,14 @@ class AbstractNodeItem(QGraphicsItem):
     def boundingRect(self):
         return QRectF(0.0, 0.0, self._width, self._height)
 
+    # TODO: implement node signal
     def mousePressEvent(self, event):
         self._properties['selected'] = True
         super(AbstractNodeItem, self).mousePressEvent(event)
+
+    # TODO: implement node signal
+    def mouseDoubleClickEvent(self, event):
+        super(AbstractNodeItem, self).mouseDoubleClickEvent(event)
 
     def setSelected(self, selected):
         self._properties['selected'] = selected
