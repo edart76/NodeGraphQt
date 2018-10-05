@@ -55,6 +55,7 @@ class NodeModel(object):
         self.inputs = {}
         self.outputs = {}
         self._properties = {}
+        self._widget_types = {}
 
     @property
     def properties(self):
@@ -77,6 +78,16 @@ class NodeModel(object):
             dict: user defined properties.
         """
         return self._properties
+
+    @property
+    def widget_types(self):
+        """
+        return the widget type for the node properties.
+
+        Returns:
+            dict: {<property_name>: PROPERTY_DISPLAY}
+        """
+        return self._widget_types
 
     @property
     def to_dict(self):
