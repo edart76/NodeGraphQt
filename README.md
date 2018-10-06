@@ -1,15 +1,24 @@
-## NodeGraph Widget
+## NodeGraphQT
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE.md) [![PEP8](https://img.shields.io/badge/code%20style-pep8-green.svg)](https://www.python.org/dev/peps/pep-0008/) [![stability-wip](https://img.shields.io/badge/stability-work_in_progress-lightgrey.svg)](https://github.com/orangemug/stability-badges/blob/master/README.md)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE.md) 
+[![PEP8](https://img.shields.io/badge/code%20style-pep8-green.svg)](https://www.python.org/dev/peps/pep-0008/) 
+[![stability-wip](https://img.shields.io/badge/stability-work_in_progress-lightgrey.svg)](https://github.com/orangemug/stability-badges/blob/master/README.md)
 
-This is a **_work in progress_** widget I'm working on in my spare time, as
-a learning exercise to write a custom node graph with PySide2.
+This is a personal project I'm working on in my spare time, as a learning exercise for writing a custom node graph.
 
-NodeGraphQt is node graph widget that can be implemented and repurposed into applications that supports PySide2.
+---
+
+NodeGraphQt is a node graph framework that can be implemented and repurposed into 
+applications that supports [PySide2](https://doc-snapshots.qt.io/qtforpython/).
 
 ![screencap01](/example/screenshot.png)
 
-#### Navigation
+#### Requirements
+
+- Python 3
+- PySide2
+
+#### Navigation Controls
 
 | action        | controls                               |
 | ------------- |:--------------------------------------:|
@@ -26,7 +35,11 @@ NodeGraphQt is node graph widget that can be implemented and repurposed into app
 #### Context Menu
 ![screencap02](https://raw.githubusercontent.com/jchanvfx/NodeGraphQt/master/example/screenshot_menu.png)
 
-#### Example
+#### API Documentation
+
+_currently unavaliable_
+
+#### Example Code
 
 ```python
 import sys
@@ -69,9 +82,10 @@ if __name__ == '__main__':
     # connect nodes.
     node_a.set_input(0, node_b.output(0))    
 
-    # show the viewer widget.
-    graph_widget = graph.viewer()
-    graph_widget.show()
+    # show widget.
+    viewer = graph.viewer()
+    viewer.show()
 
     app.exec_()
 ```
+
