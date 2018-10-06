@@ -4,14 +4,15 @@
 [![PEP8](https://img.shields.io/badge/code%20style-pep8-green.svg)](https://www.python.org/dev/peps/pep-0008/) 
 [![stability-wip](https://img.shields.io/badge/stability-work_in_progress-lightgrey.svg)](https://github.com/orangemug/stability-badges/blob/master/README.md)
 
-This is a personal project I'm working on in my spare time, as a learning exercise for writing a custom node graph.
+This is a personal hobby project I'm working on in my spare time, as a learning exercise 
+for writing a custom node graph.
 
 ---
 
 NodeGraphQt is a node graph framework that can be implemented and repurposed into 
 applications that supports [PySide2](https://doc-snapshots.qt.io/qtforpython/).
 
-![screencap01](/example/screenshot.png)
+![screencap01](/screencaps/screenshot.png)
 
 #### Requirements
 
@@ -26,14 +27,14 @@ applications that supports [PySide2](https://doc-snapshots.qt.io/qtforpython/).
 | Pan           | `MMB + Drag` or `Alt + LMB + Drag`     |
 
 #### Node Search
-![screencap03](https://raw.githubusercontent.com/jchanvfx/NodeGraphQt/master/example/screenshot_tab_search.png)
+![screencap03](screencaps/screenshot_tab_search.png)
 
 | action           | hotkey |
 | ---------------- |:------:|
 | Show node search | `Tab`  |
 
 #### Context Menu
-![screencap02](https://raw.githubusercontent.com/jchanvfx/NodeGraphQt/master/example/screenshot_menu.png)
+![screencap02](screencaps/screenshot_menu.png)
 
 #### API Documentation
 
